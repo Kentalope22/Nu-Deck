@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113ce903cc549954eb6dff17bff45220, type: 3}
+  m_Name: Penguin
+  m_EditorClassIdentifier: 
+  name: Penguin
+  description: 
+  frontSprite: {fileID: 21300000, guid: 05475cbfa72645146aa6983c41cfe9af, type: 3}
+  backSprite: {fileID: 21300000, guid: 573648876c903b541bc2891938463b55, type: 3}
+  type1: 6
+  type2: 3
+  maxHp: 40
+  attack: 50
+  defense: 45
+  spAttack: 60
+  spDefense: 55
+  speed: 30
+  learnableMoves: []
