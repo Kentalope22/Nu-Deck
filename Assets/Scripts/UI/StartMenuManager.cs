@@ -28,11 +28,17 @@ public class StartMenuManager : MonoBehaviour
 
     public void OnTitleScreenPress()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadSceneAsync(2);
+        Time.timeScale = 1f;
+
     }
 
     public void OnReturnToTitlePress()
     {
+        
         SceneManager.LoadScene(0);
+        
     }
+
+    
 }

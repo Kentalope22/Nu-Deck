@@ -106,7 +106,8 @@ public class MenuManager : MonoBehaviour
 
     public void OnQuitPress()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadSceneAsync(0);
+        Unpause();
     }
     #endregion
 }
