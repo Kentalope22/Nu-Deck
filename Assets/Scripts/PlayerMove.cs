@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float moveDist = 1f;
 
+    public LayerMask solidObjectsLayer;
+
     // status of movement and position
     private bool moving = false;
     private Vector3 pos_;
@@ -54,12 +56,20 @@ public class PlayerMovement : MonoBehaviour
 
             dir = new Vector3(moveDist, 0f, 0f);
         }
-        if (dir != Vector3.zero)
+         if (dir != Vector3.zero)
         {
-            pos_ = transform.position + dir;
-            StartCoroutine(MoveToTile());
+            Vector3 targetPosition = transform.position + dir;
+            if (isWalkable(targetPosition))
+            {
+                pos_ = targetPosition;
+                StartCoroutine(MoveToTile());
+            }
         }
+        
+        
+        
 
+            
 
     }
 
@@ -76,4 +86,12 @@ public class PlayerMovement : MonoBehaviour
         transform.position = pos_;
         moving = false;
     }
+    private bool isWalkable(Vector3 targetPosition)
+{
+    if (Physics2D.OverlapCircle(targetPosition, 0.3f, solidObjectsLayer) != null) {
+        return false;
+    }
+        return true;
+}
+
 }
