@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Nu-Deck-title.sln"
+    "dotnet.defaultSolution": "Nu-Deck.sln"
 }
