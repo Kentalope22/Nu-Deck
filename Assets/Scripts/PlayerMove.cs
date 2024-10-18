@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float moveDist = 1f;
 
+    //Player collision with object layers
+    public LayerMask solidObjectsLayer;
+
     // status of movement and position
     private bool moving = false;
     private Vector3 pos_;
@@ -57,7 +60,9 @@ public class PlayerMovement : MonoBehaviour
         if (dir != Vector3.zero)
         {
             pos_ = transform.position + dir;
-            StartCoroutine(MoveToTile());
+            
+            if (isWalkable(pos_))
+                StartCoroutine(MoveToTile());
         }
 
 
@@ -75,5 +80,16 @@ public class PlayerMovement : MonoBehaviour
         }
         transform.position = pos_;
         moving = false;
+    }
+
+    /*Takes player position and checks if the tile is walkable. Also checks if there is a solid object at the tile position in order to collide with layers of solid objects
+    in the game*/
+    private bool isWalkable(Vector3 pos_)
+    {
+        if(Physics2D.OverlapCircle(pos_, 0.05f, solidObjectsLayer) != null)
+        {
+            return false;
+        }
+        return true;
     }
 }
