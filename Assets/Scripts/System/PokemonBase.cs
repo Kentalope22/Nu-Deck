@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script by Rad
+// Asset so this object can be created in the Unity Hub
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
 public class PokemonBase : ScriptableObject
 {
+    // Properties of the Object that can be edited in Unity Hub
     [SerializeField] new string name;
     [TextArea]
     [SerializeField] string description;
@@ -23,6 +26,7 @@ public class PokemonBase : ScriptableObject
     [SerializeField] int speed;
     [SerializeField] List<LearnableMove> learnableMoves;
 
+    // Properties to be able to return these variables in other files
     public string Name
     {
         get { return name; }
@@ -81,6 +85,7 @@ public class PokemonBase : ScriptableObject
 }
 
 [System.Serializable]
+// Creates the future or current learnable moves of the pokemon based on level
 public class LearnableMove
 {
     [SerializeField] MoveBase moveBase;
@@ -97,6 +102,7 @@ public class LearnableMove
     }
 }
 
+// Typing of the pokemons that will be dealt with for the battle system
 public enum Pokemontype
 {
     None,

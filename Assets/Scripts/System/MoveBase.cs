@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script by Rad
+// Makes so Move Object can be created through Unity Hub
 [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new Move")]
 public class MoveBase : ScriptableObject
 {
+    // Variables of the Object that can be set through Unity Hub.
     [SerializeField] new string name;
 
     [TextArea]
@@ -15,6 +18,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] int accuracy;
     [SerializeField] int pp;
 
+    // Properties that allow other files to access these member variables
     public string Name
     {
         get { return name; }
