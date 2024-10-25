@@ -8,12 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 18bcdd2290c0b874f92a40ea89e42c9f
-  - enabled: 0
-    path: Assets/Scenes/StartMenu.unity
-    guid: fd727ca7d4a9e94469defb34aa96a989
   - enabled: 1
     path: Assets/Scenes/Game.unity
-    guid: 656d5a0a370bf4146a40ed1b4043fdd1
+    guid: a77f306e5f6234400ab0deca537d7ca6
   - enabled: 1
     path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
     guid: 2cda990e2423bbf4892e6590ba056729
