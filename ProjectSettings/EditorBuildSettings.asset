@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 18bcdd2290c0b874f92a40ea89e42c9f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StartMenu.unity
     guid: fd727ca7d4a9e94469defb34aa96a989
   - enabled: 1
-    path: Assets/Scenes/PH_Game.unity
-    guid: c8031f912a7f0bc47b6eb18060e35533
+    path: Assets/Scenes/Game.unity
+    guid: 656d5a0a370bf4146a40ed1b4043fdd1
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

@@ -7,9 +7,10 @@ using UnityEngine.EventSystems;
 public class StartMenuManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+       
+
     }
 
     // Update is called once per frame
@@ -21,14 +22,10 @@ public class StartMenuManager : MonoBehaviour
         }
     }
     // Buttons to load in and out of start menu
-    public void OnPlayPress()
-    {
-        SceneManager.LoadScene(2);
-    }
 
     public void OnTitleScreenPress()
     {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(1);
         Time.timeScale = 1f;
 
     }
