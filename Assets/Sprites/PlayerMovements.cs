@@ -15,6 +15,21 @@ public class PlayerMovement : MonoBehaviour
     private bool moving = false;
     private Vector3 pos_;
 
+    void StartBattle()
+    {
+        // FIXME this function doesn't work for whatever reason. Variable names are the primary culpret
+        //state = GameState.Battle;
+        //BattleSystem.gameObject.SetActive(true);
+        //worldCamera.gameObject.SetActive(false);
+
+        //var playerParty = playerController.GetComponent<PokemonParty>();
+        //var wildPokemon = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildPokemon();
+
+        //BattleSystem.StartBattle(playerParty, wildPokemon);
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
