@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaac824793327754ea1563ba58aee173, type: 3}
   m_Name: Ember
   m_EditorClassIdentifier: 
-  name: 
+  name: Ember
   description: 
-  type: 0
-  power: 0
-  accuracy: 0
-  pp: 0
+  type: 1
+  power: 40
+  accuracy: 100
+  pp: 25
