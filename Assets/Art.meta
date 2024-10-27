@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9b254e3ff24e3e340b45ecd4ce4e3d17
 folderAsset: yes
+=======
+<<<<<<<< HEAD:Assets/Scenes/BattleUI.unity.meta
+guid: 69407f107bc1af647920aaa0c359393a
+========
+guid: 6ace8111703114649b605bf04efcbfe6
+folderAsset: yes
+>>>>>>>> RandomEncounter+PlayerAnimation:Assets/Art.meta
+>>>>>>> RandomEncounter+PlayerAnimation
 DefaultImporter:
   externalObjects: {}
   userData: 

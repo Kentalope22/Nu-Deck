@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/BattleUI.unity.meta
 guid: 69407f107bc1af647920aaa0c359393a
+========
+guid: 6ace8111703114649b605bf04efcbfe6
+folderAsset: yes
+>>>>>>>> RandomEncounter+PlayerAnimation:Assets/Art.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
