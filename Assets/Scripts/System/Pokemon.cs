@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using UnityEditor.MPE;
+
 using UnityEngine;
 
 public class Pokemon
