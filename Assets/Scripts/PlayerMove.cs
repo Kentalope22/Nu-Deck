@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void HandleUpdate()
     {
         // base case if sprite is already moving
         if (moving) { return; }
