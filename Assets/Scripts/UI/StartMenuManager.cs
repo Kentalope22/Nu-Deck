@@ -16,7 +16,7 @@ public class StartMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.instance.MenuOpenCloseInput)
+        if (Input.GetKey(KeyCode.Z))
         {
             OnTitleScreenPress();
         }
