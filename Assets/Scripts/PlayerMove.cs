@@ -44,25 +44,25 @@ public class PlayerMove : MonoBehaviour
         Vector3 dir = Vector3.zero;
 
         // binding keys to move sprite
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
 
             dir = new Vector3(0f, moveDist, 0f);
 
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
 
             dir = new Vector3(0f, -moveDist, 0f);
 
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
 
             dir = new Vector3(-moveDist, 0f, 0f);
 
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
 
             dir = new Vector3(moveDist, 0f, 0f);
