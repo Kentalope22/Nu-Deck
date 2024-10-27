@@ -56,10 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
             dir = new Vector3(moveDist, 0f, 0f);
         }
-         if (dir != Vector3.zero)
+         if (dir != Vector3.zero) // Checks if movement key is intiated
         {
-            Vector3 targetPosition = transform.position + dir;
-            if (isWalkable(targetPosition))
+            Vector3 targetPosition = transform.position + dir; 
+            if (isWalkable(targetPosition)) // If position is walkable, then start movement
             {
                 pos_ = targetPosition;
                 StartCoroutine(MoveToTile());
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = pos_;
         moving = false;
     }
-    private bool isWalkable(Vector3 targetPosition)
+    private bool isWalkable(Vector3 targetPosition) // Ensures player isn't walking through solidObjects
 {
     if (Physics2D.OverlapCircle(targetPosition, 0.3f, solidObjectsLayer) != null) {
         return false;
