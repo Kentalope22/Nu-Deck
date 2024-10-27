@@ -12,10 +12,19 @@ public class PlayerMovement : MonoBehaviour
     public float moveDist = 1f;
 
     public LayerMask solidObjectsLayer;
+    //Grass pokemon encounter layer
+    public LayerMask grassLayer;
 
     // status of movement and position
     private bool moving = false;
     private Vector3 pos_;
+    //Walking animation code
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +65,11 @@ public class PlayerMovement : MonoBehaviour
 
             dir = new Vector3(moveDist, 0f, 0f);
         }
-         if (dir != Vector3.zero)
+        if (dir != Vector3.zero)
         {
+            animator.SetFloat("MoveX", dir.x);
+            animator.SetFloat("MoveY", dir.y);
+
             Vector3 targetPosition = transform.position + dir;
             if (isWalkable(targetPosition))
             {
@@ -65,11 +77,8 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(MoveToTile());
             }
         }
-        
-        
-        
 
-            
+        animator.SetBool("isMoving", moving);
 
     }
 
@@ -85,13 +94,25 @@ public class PlayerMovement : MonoBehaviour
         }
         transform.position = pos_;
         moving = false;
+        //Executes code to check for pokemon and start a battle scene
+        CheckForEncounters();
     }
     private bool isWalkable(Vector3 targetPosition)
-{
-    if (Physics2D.OverlapCircle(targetPosition, 0.3f, solidObjectsLayer) != null) {
-        return false;
-    }
+    {
+        if (Physics2D.OverlapCircle(targetPosition, 0.3f, solidObjectsLayer) != null) {
+            return false;
+        }
         return true;
-}
+    }
 
+    private void CheckForEncounters()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.3f, grassLayer) != null)
+        {
+            if (Random.Range(1, 101) <= 10)
+            {
+                Debug.Log("Encountered a wild pokemon");
+            }
+        }
+    }
 }
