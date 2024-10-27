@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class LevelMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int sceneBuildIndex;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Trigger Entered");
+
+        if (other.CompareTag("Player")) { // Using CompareTag is more efficient
+            print("Switching Scene to " + sceneBuildIndex);
+            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+        }
     }
 }
