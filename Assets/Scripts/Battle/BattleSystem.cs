@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,19 +13,30 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleHud enemyHud;
     [SerializeField] BattleDialogBox dialogBox;
 
+    public event Action<bool> OnBattleOver;
+
     BattleState state;
     int currentAction;
     int currentMove;
 
-    private void Start()
-    {
-        StartCoroutine(SetupBattle());
-    }
+    PokemonParty playerParty;
+    Pokemon wildPokemon;
 
+    //private void Start()
+    //{
+    //    StartCoroutine(SetupBattle());
+    //}
+    public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon)
+    {
+        this.playerParty = playerParty;
+        this.wildPokemon = wildPokemon;
+        StartCoroutine(SetupBattle());
+
+    }
     public IEnumerator SetupBattle()
     {
-        playerUnit.Setup();
-        enemyUnit.Setup();
+        playerUnit.Setup(playerParty.GetHealthyPokemon());
+        enemyUnit.Setup(wildPokemon);
         playerHud.SetData(playerUnit.Pokemon);
         enemyHud.SetData(enemyUnit.Pokemon);
 
@@ -65,6 +77,7 @@ public class BattleSystem : MonoBehaviour
         if (damageDetails.Fainted)
         {
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.baseStats.Name} Fainted!");
+            OnBattleOver(true);
         }
         else
         {
@@ -86,6 +99,7 @@ public class BattleSystem : MonoBehaviour
         if (damageDetails.Fainted)
         {
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} Fainted!");
+            OnBattleOver(false);
         }
         else
         {
@@ -103,6 +117,19 @@ public class BattleSystem : MonoBehaviour
         else if (damageDetails.TypeEffectiveness < 1f)
             yield return dialogBox.TypeDialog("It's not very effective!");
     }
+
+    public void HandleUpdate()
+    {
+        if (state == BattleState.PlayerAction)
+        {
+            HandleActionSelection();
+        }
+        else if (state == BattleState.PlayerMove)
+        {
+            HandleMoveSelection();
+        }
+    }
+
 
     private void Update()
     {
