@@ -19,6 +19,8 @@ public class BattleSystem : MonoBehaviour
     int currentAction;
     int currentMove;
 
+    
+
     public void StartBattle()
     {
         StartCoroutine(SetupBattle());
@@ -67,7 +69,9 @@ public class BattleSystem : MonoBehaviour
 
         if (damageDetails.Fainted)
         {
-            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.baseStats.Name} Fainted!");
+            
+            yield return HandlePokemonFainted(enemyUnit);
+            
             OnBattleOver(true);
         }
         else
@@ -89,7 +93,8 @@ public class BattleSystem : MonoBehaviour
 
         if (damageDetails.Fainted)
         {
-            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} Fainted!");
+            
+            yield return HandlePokemonFainted(playerUnit);
             OnBattleOver(false);
         }
         else
@@ -97,6 +102,43 @@ public class BattleSystem : MonoBehaviour
             PlayerAction();
         }
     }
+    #region LevelingStuff
+    IEnumerator HandlePokemonFainted(BattleUnit faintedUnit)
+    {
+        yield return dialogBox.TypeDialog($"{faintedUnit.Pokemon.baseStats.Name} Fainted!");
+        
+
+        if (!faintedUnit.IsPlayerUnit)
+        {
+            //EXP Gain
+            int expYield = faintedUnit.Pokemon.baseStats.ExpYield;
+            int enemyLevel = faintedUnit.Pokemon.Level;
+
+            int expGain = Mathf.FloorToInt(expYield * enemyLevel)/7;
+            playerUnit.Pokemon.Exp += expGain;
+            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} gained {expGain} exp");
+            //yield return playerUnit.Hud.SetExp(); 
+            //^See 17: Refractoring
+            //Check Level Up
+        }
+
+        CheckForBattleOver(faintedUnit);
+        
+    }
+
+    void CheckForBattleOver(BattleUnit faitedUnit)
+    {
+        if (faitedUnit.IsPlayerUnit)
+        {
+            //check if player has more in party:17
+        }
+        else
+        {
+            OnBattleOver(true);
+        }
+        
+    }
+    #endregion
 
     IEnumerator ShowDamageDetails(DamageDetails damageDetails)
     {

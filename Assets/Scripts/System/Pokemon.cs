@@ -10,6 +10,8 @@ public class Pokemon
     public int HP { get; set; }
     public List<Move> Moves { get; set; }
 
+    public int Exp { get; set; }
+
     public Pokemon(PokemonBase pBase, int pLevel)
     {
         baseStats = pBase;
@@ -28,6 +30,13 @@ public class Pokemon
                 break;
             }
         }
+
+        
+    }
+
+    public void Init()
+    {
+        Exp = baseStats.GetExpForLevel(Level);
     }
 
     public int Attack 
