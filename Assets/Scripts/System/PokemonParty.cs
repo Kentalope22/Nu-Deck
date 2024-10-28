@@ -15,7 +15,7 @@ public class PokemonParty : MonoBehaviour
 
 
     private void Start()
-    {
+    {   // initializes each pokemon in the party as a seperate pokemon
         foreach (var pokemon in pokemons)
         {
             pokemon.Init();
