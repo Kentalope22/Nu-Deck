@@ -1,7 +1,9 @@
-
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 
 {
 
@@ -12,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask solidObjectsLayer;
     //Grass pokemon encounter layer
     public LayerMask grassLayer;
+
+    public event Action OnEcountered;
 
     // status of movement and position
     private bool moving = false;
@@ -32,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void HandleUpdate()
     {
         // base case if sprite is already moving
         if (moving) { return; }
@@ -107,9 +111,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.3f, grassLayer) != null)
         {
-            if (Random.Range(1, 101) <= 10)
+            if (UnityEngine.Random.Range(1, 101) <= 10)
             {
-                Debug.Log("Encountered a wild pokemon");
+                animator.SetBool("isMoving", false);
+                OnEcountered();
             }
         }
     }
