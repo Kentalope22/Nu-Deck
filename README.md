@@ -30,7 +30,7 @@ Welcome to the Pokemon-Themed Handhelding Gaming Project! In this project, you w
 ## Project Instructions
 1. Design and Build the Console:
 
-* Assemble the Raspberry Pi/Arduino with the display, enclosure, and necessary components.
+* Assemble the Raspberry Pi with the display, enclosure, and necessary components.
 * Use jumper wires and a breadboard for prototyping connections before finalizing the build.
 * Ensure all hardware elements integrate smoothly to allow portability and gameplay.
 
