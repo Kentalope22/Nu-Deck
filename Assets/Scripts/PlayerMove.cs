@@ -101,7 +101,7 @@ public class PlayerMove : MonoBehaviour
     }
     private bool isWalkable(Vector3 targetPosition)
     {
-        if (Physics2D.OverlapCircle(targetPosition, 0.3f, solidObjectsLayer) != null) {
+        if (Physics2D.OverlapCircle(targetPosition, 0.3f, solidObjectsLayer) != null) { // player overlaps with the grass //
             return false;
         }
         return true;
