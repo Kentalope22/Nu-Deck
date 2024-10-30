@@ -7,7 +7,6 @@ public enum GameState { FreeRoam, Battle }
 
 public class GameController : MonoBehaviour
 {
-    //video #12
     [SerializeField] PlayerMove playerMove;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
@@ -23,7 +22,7 @@ public class GameController : MonoBehaviour
     void StartBattle()
     {
         state = GameState.Battle;
-        battleSystem.gameObject.SetActive(true);
+        battleSystem.gameObject.SetActive(true); // starts the battle when encountered an enemy
         worldCamera.gameObject.SetActive(false);
 
         battleSystem.StartBattle();
@@ -32,7 +31,7 @@ public class GameController : MonoBehaviour
     void EndBattle (bool won)
     {
         state = GameState.FreeRoam;
-        battleSystem.gameObject.SetActive(false);
+        battleSystem.gameObject.SetActive(false); // goes back to the open world
         worldCamera.gameObject.SetActive(true);
     }
 

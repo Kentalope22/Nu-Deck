@@ -35,17 +35,17 @@ public class BattleDialogBox : MonoBehaviour
     yield return new WaitForSeconds(1f);
    }
 
-   public void EnableDialogText(bool enabled)
+   public void EnableDialogText(bool enabled) //displays text messages after the battle //
    {
     dialogText.enabled = enabled;
    }
 
-   public void EnableActionSelector(bool enabled)
+   public void EnableActionSelector(bool enabled) // shows the UI such as Fight, Run //
    {
     actionSelector.SetActive(enabled);
    }
 
-   public void EnableMoveSelector(bool enabled)
+   public void EnableMoveSelector(bool enabled) // shows the UI for selecing moves //
    {
     moveSelector.SetActive(enabled);
     moveDetails.SetActive(enabled);
@@ -56,9 +56,9 @@ public class BattleDialogBox : MonoBehaviour
     for (int i=0; i<actionTexts.Count; ++i)
     {
         if (i == selectedAction)
-            actionTexts[i].color = highlightedColor;
+            actionTexts[i].color = highlightedColor; //highlights the color when selecting action based on the user input//
         else
-            actionTexts[i].color = Color.black;
+            actionTexts[i].color = Color.black; // text goes back to black after selecting another option //
     }
    }
 
@@ -67,23 +67,23 @@ public class BattleDialogBox : MonoBehaviour
     for (int i=0; i<moveTexts.Count; ++i)
     {
         if (i == selectedMove)
-            moveTexts[i].color = highlightedColor;
+            moveTexts[i].color = highlightedColor; // same for move selection //
         else
-            moveTexts[i].color = Color.black;
+            moveTexts[i].color = Color.black; // same for move selection //
     }
 
     ppText.text = $"PP { move.PP}/{move.baseStats.PP}";
     typeText.text = move.baseStats.Type.ToString();
    }
 
-   public void SetMoveNames(List<Move> moves)
+   public void SetMoveNames(List<Move> moves)  //used to update the UI to show the player's available moves //
    {
     for (int i=0; i<moveTexts.Count; ++i)
     {
         if (i < moves.Count)
-            moveTexts[i].text = moves[i].baseStats.Name;
+            moveTexts[i].text = moves[i].baseStats.Name; // name of the move //
         else
-            moveTexts[i].text = "-";
+            moveTexts[i].text = "-"; // if there is no move available it shows as - //
     }
    }
 }

@@ -149,6 +149,6 @@ public class TypeChart
         int row = (int)attackType - 1;
         int col = (int)defenseType - 1;
 
-        return chart[row][col];
+        return chart[row][col]; // returns whether if the attack is effective based on the pokemon type //
     }
 }

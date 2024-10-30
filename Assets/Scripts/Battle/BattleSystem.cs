@@ -42,7 +42,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.PlayerAction;
         StartCoroutine(dialogBox.TypeDialog("Choose an action"));
-        dialogBox.EnableActionSelector(true);
+        dialogBox.EnableActionSelector(true); //dialog box shows the fight and run option on the right //
     }
 
     void PlayerMove()
@@ -50,38 +50,38 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PlayerMove;
         dialogBox.EnableActionSelector(false);
         dialogBox.EnableDialogText(false);
-        dialogBox.EnableMoveSelector(true);
+        dialogBox.EnableMoveSelector(true); // dialog box shows the moves //
     }
 
     IEnumerator PerformPlayerMove()
     {
         state = BattleState.Busy;
 
-        var move = playerUnit.Pokemon.Moves[currentMove];
-        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} used {move.baseStats.Name}!");
+        var move = playerUnit.Pokemon.Moves[currentMove]; // player makes a move //
+        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} used {move.baseStats.Name}!"); // dialog box shows what move the player choose //
 
 
-        var damageDetails = enemyUnit.Pokemon.TakeDamage(move, playerUnit.Pokemon);
-        yield return enemyHud.UpdateHP();
-        yield return ShowDamageDetails(damageDetails);
+        var damageDetails = enemyUnit.Pokemon.TakeDamage(move, playerUnit.Pokemon); //  enemy takes damage //
+        yield return enemyHud.UpdateHP(); // updates enemy HP //
+        yield return ShowDamageDetails(damageDetails); 
 
         if (damageDetails.Fainted)
         {
-            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.baseStats.Name} Fainted!");
-            OnBattleOver(true);
+            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.baseStats.Name} Fainted!"); // dialog box shows enemy fainted //
+            OnBattleOver(true); // battle is over and goes back to the world //
         }
         else
         {
-            StartCoroutine(EnemyMove());
+            StartCoroutine(EnemyMove()); // if the enemy is not dead, it's the enemy turn to make a move //
         }
     }
 
-    IEnumerator EnemyMove()
+    IEnumerator EnemyMove() // vice versa from the player move //
     {
         state = BattleState.EnemyMove;
 
         var move = enemyUnit.Pokemon.GetRandomMove();
-        yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.baseStats.Name} used {move.baseStats.Name}!");
+        yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.baseStats.Name} used {move.baseStats.Name}!"); 
 
         var damageDetails = playerUnit.Pokemon.TakeDamage(move, playerUnit.Pokemon);
         yield return playerHud.UpdateHP();
@@ -98,7 +98,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    IEnumerator ShowDamageDetails(DamageDetails damageDetails)
+    IEnumerator ShowDamageDetails(DamageDetails damageDetails) //shows the damage details based on the attack //
     {
         if (damageDetails.Critical > 1f)
             yield return dialogBox.TypeDialog("A critical hit!");
@@ -111,17 +111,17 @@ public class BattleSystem : MonoBehaviour
 
     public void HandleUpdate()
     {
-        if (state == BattleState.PlayerAction)
+        if (state == BattleState.PlayerAction) // player is choosing an action like fight or run //
         {
             HandleActionSelection();
         }
-        else if (state == BattleState.PlayerMove)
+        else if (state == BattleState.PlayerMove) // player has chosen to fight and is now selecting a specfic move to use //
         {
             HandleMoveSelection();
         }
     }
 
-    void HandleActionSelection() //change the selected action based on the user input
+    void HandleActionSelection() // inputing arrow keys for action selection//
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -136,7 +136,7 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.UpdateActionSelection(currentAction);
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z)) // Z for selecting an action //
         {
             if (currentAction == 0)
             {
@@ -150,7 +150,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
     
-    void HandleMoveSelection()
+    void HandleMoveSelection() // inputing arrow keys for move selection//
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -175,7 +175,7 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.UpdateMoveSelection(currentMove, playerUnit.Pokemon.Moves [currentMove]);
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z)) // Z for selecting an action //
         {
             dialogBox.EnableMoveSelector(false);
             dialogBox.EnableDialogText(true);
