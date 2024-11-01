@@ -3,8 +3,12 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+[System.Serializable]
 public class Pokemon
 {
+    // [SerializedField] PokemonBase _base;
+    // [SerializedField] int level;
+
     public PokemonBase baseStats { get; set; }
     public int Level { get; set; }
     public int HP { get; set; }
@@ -34,6 +38,15 @@ public class Pokemon
         
     }
 
+    public bool CheckForLevelUp()
+    {
+        if (Exp > baseStats.GetExpForLevel(Level + 1))
+        {
+            ++Level;
+            return true;
+        }
+        return false;
+    }
     public void Init()
     {
         Exp = baseStats.GetExpForLevel(Level);

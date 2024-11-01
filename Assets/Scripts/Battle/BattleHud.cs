@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BattleHud : MonoBehaviour
 {
@@ -16,9 +18,14 @@ public class BattleHud : MonoBehaviour
         _pokemon = pokemon;
 
         nameText.text = pokemon.baseStats.Name;
-        levelText.text = "Lvl " + pokemon.Level;
+        SetLevel();
         hpBar.SetHP((float)pokemon.HP / pokemon.MaxHp);
         SetExp();
+    }
+
+    public void SetLevel()
+    {
+        levelText.text = "Lvl " + _pokemon.Level;
     }
 
     public void SetExp()
@@ -29,15 +36,14 @@ public class BattleHud : MonoBehaviour
         expBar.transform.localScale = new Vector3(normalizedExp, 1, 1);
  
     }
+    public IEnumerator SetExpSmooth(bool reset=false)
+    {
+        if (expBar == null) yield break;
+        if (reset) expBar.transform.localScale = new Vector3(0, 1, 1);
 
-    //public void SetExpSmooth()
-    //{
-    //    if (expBar == null) return;
-
-
-
-    //}
-
+        float normalizedExp = GetNormalizedExp();
+        expBar.transform.DOScaleX(normalizedExp, 1.5f).WaitForCompletion();
+    }
     float GetNormalizedExp()
     {
         int currLevelExp = _pokemon.baseStats.GetExpForLevel(_pokemon.Level);

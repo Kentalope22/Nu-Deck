@@ -117,9 +117,15 @@ public class BattleSystem : MonoBehaviour
             int expGain = Mathf.FloorToInt(expYield * enemyLevel)/7;
             playerUnit.Pokemon.Exp += expGain;
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} gained {expGain} exp");
-            //yield return playerUnit.Hud.SetExp(); 
+            yield return playerUnit.Hud.SetExpSmooth(); 
             //^See 17: Refractoring
             //Check Level Up
+            while (playerUnit.Pokemon.CheckForLevelUp())
+            {
+                playerUnit.Hud.SetLevel();
+                yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} grew {playerUnit.Pokemon.Level}");
+                yield return playerUnit.Hud.SetExpSmooth(true);
+            }
         }
 
         CheckForBattleOver(faintedUnit);
