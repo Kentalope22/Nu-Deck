@@ -188,7 +188,7 @@ public class BattleSystem : MonoBehaviour
             else if (currentAction == 3)
             {
                 //Run
-                TryToEscape();
+                StartCoroutine(TryToEscape());
             }
         }
     }
@@ -280,34 +280,11 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(EnemyMove());
     }
 
-    IEnumerator TryToEscape()
-    {
+    IEnumerator TryToEscape(){
+    state = BattleState.Busy;
+    yield return dialogBox.TypeDialog("You successfully escaped!");
 
-        ++escapeAttempts;
-
-        int playerSpeed = playerUnit.Pokemon.Speed;
-        int enemySpeed = enemyUnit.Pokemon.Speed;
-
-        if(enemySpeed < playerSpeed)
-        {
-            yield return dialogBox.TypeDialog($"Ran away safely!");
-            
-        }
-        else
-        {
-            float f = (playerSpeed * 128) / enemySpeed + 30 * escapeAttempts;
-            f = f % 256;
-
-            if(UnityEngine.Random.Range(0, 256) < f)
-            {
-                yield return dialogBox.TypeDialog($"Ran away safely!");
-           
-            }
-            else
-            {
-            yield return dialogBox.TypeDialog($"Can't escape!");
-            }
-            
-        }
+    OnBattleOver?.Invoke(false);    
     }
+        
 }
