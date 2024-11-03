@@ -24,6 +24,8 @@ public class BattleSystem : MonoBehaviour
     PokemonParty playerParty;
     Pokemon wildPokemon;
 
+    int escapeAttempts;
+
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon)
     {   // sets the party in battle with current player party and wild pokemon
         this.playerParty = playerParty;
@@ -45,6 +47,7 @@ public class BattleSystem : MonoBehaviour
         yield return dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.baseStats.Name} appeared.");
 
         PlayerAction();
+        escapeAttempts = 0;
     }
 
     void PlayerAction()
@@ -185,6 +188,7 @@ public class BattleSystem : MonoBehaviour
             else if (currentAction == 3)
             {
                 //Run
+                TryToEscape();
             }
         }
     }
@@ -274,5 +278,45 @@ public class BattleSystem : MonoBehaviour
         yield return dialogBox.TypeDialog($"Go {newPokemon.baseStats.Name}.");
 
         StartCoroutine(EnemyMove());
+    }
+
+    IEnumerator TryToEscape()
+    {
+        state = BattleState.Busy;
+
+        if(isTrainerBattle)
+        {
+            yield return dialogBox.TypeDialog($"You can't run from trainer battles!");
+            state = BattleState.RunningTurn;
+            yield break;
+        }
+
+        ++escapeAttempts;
+
+        int playerSpeed = playerUnit.Pokemon.Speed;
+        int enemySpeed = enemyUnit.Pokemon.Speed;
+
+        if(enemySpeed < playerSpeed)
+        {
+            yield return dialogBox.TypeDialog($"Ran away safely!");
+            BattleOVer(true);
+        }
+        else
+        {
+            float f = (playerSPeed * 128) / enemySpeed + 30 * escapeAttempts;
+            f = f % 256;
+
+            if(UnityEngine.Random.Range(0, 256) < f)
+            {
+                yield return dialogBox.TypeDialog($"Ran away safely!");
+            BattleOVer(true);
+            }
+            else
+            {
+            yield return dialogBox.TypeDialog($"Can't escape!");
+            state = BattleState.RunningTurn;
+            }
+            
+        }
     }
 }
