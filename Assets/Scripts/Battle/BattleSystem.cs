@@ -282,14 +282,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator TryToEscape()
     {
-        state = BattleState.Busy;
-
-        if(isTrainerBattle)
-        {
-            yield return dialogBox.TypeDialog($"You can't run from trainer battles!");
-            state = BattleState.RunningTurn;
-            yield break;
-        }
 
         ++escapeAttempts;
 
@@ -299,22 +291,21 @@ public class BattleSystem : MonoBehaviour
         if(enemySpeed < playerSpeed)
         {
             yield return dialogBox.TypeDialog($"Ran away safely!");
-            BattleOVer(true);
+            
         }
         else
         {
-            float f = (playerSPeed * 128) / enemySpeed + 30 * escapeAttempts;
+            float f = (playerSpeed * 128) / enemySpeed + 30 * escapeAttempts;
             f = f % 256;
 
             if(UnityEngine.Random.Range(0, 256) < f)
             {
                 yield return dialogBox.TypeDialog($"Ran away safely!");
-            BattleOVer(true);
+           
             }
             else
             {
             yield return dialogBox.TypeDialog($"Can't escape!");
-            state = BattleState.RunningTurn;
             }
             
         }
