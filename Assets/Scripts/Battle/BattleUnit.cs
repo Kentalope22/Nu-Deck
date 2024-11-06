@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class BattleUnit : MonoBehaviour
 {
-    [SerializeField] PokemonBase _base;
-    [SerializeField] int level;
     [SerializeField] bool isPlayerUnit;
     [SerializeField] BattleHud hud;
  
@@ -23,9 +21,19 @@ public class BattleUnit : MonoBehaviour
         get { return hud; }
     }
 
-    public void Setup () 
+    public bool IsPlayerUnit
     {
-        Pokemon = new Pokemon(_base, level);
+        get { return isPlayerUnit;  }
+    }
+
+    public BattleHud Hud
+    {
+        get { return hud; }
+    }
+
+    public void Setup (Pokemon pokemon) 
+    {
+        Pokemon = pokemon;
         if (isPlayerUnit)
             GetComponent<Image>().sprite = Pokemon.baseStats.BackSprite;
         else
