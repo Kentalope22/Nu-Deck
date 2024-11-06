@@ -21,16 +21,6 @@ public class BattleUnit : MonoBehaviour
         get { return hud; }
     }
 
-    public bool IsPlayerUnit
-    {
-        get { return isPlayerUnit;  }
-    }
-
-    public BattleHud Hud
-    {
-        get { return hud; }
-    }
-
     public void Setup (Pokemon pokemon) 
     {
         Pokemon = pokemon;

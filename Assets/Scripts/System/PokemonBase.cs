@@ -31,11 +31,11 @@ public class PokemonBase : ScriptableObject
     {
         if(growthRate == GrowthRate.Fast)
         {
-            return 4 * (level ^ 3) / 5;
+            return 4 * level * level * level / 5;
         }
         else if(growthRate == GrowthRate.MediumFast)
         {
-            return level ^ 3;
+            return level * level * level;
         }
         return -1;
     }
