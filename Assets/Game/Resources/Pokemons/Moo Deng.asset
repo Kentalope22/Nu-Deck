@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113ce903cc549954eb6dff17bff45220, type: 3}
+  m_Name: Moo Deng
+  m_EditorClassIdentifier: 
+  name: Moo Deng
+  description: 
+  frontSprite: {fileID: 21300000, guid: 6199c814a94ea1d42b34d95ec2715a4e, type: 3}
+  backSprite: {fileID: 21300000, guid: 948bc1e13c7131d458c0f03199bdc84c, type: 3}
+  type1: 3
+  type2: 0
+  maxHp: 50
+  attack: 45
+  defense: 55
+  spAttack: 60
+  spDefense: 55
+  speed: 40
+  expYield: 64
+  growthRate: 0
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: cb0f1fe3f983f3849b6fc9c2419a652d, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 4248086c2b231e249bd7a18f5299d441, type: 2}
+    level: 4
+  - moveBase: {fileID: 11400000, guid: 5f0ae94429656e7409e36eb2a7b1ad78, type: 2}
+    level: 7
