@@ -211,7 +211,7 @@ public class BattleSystem : MonoBehaviour
         else if (Input.GetKeyDown (KeyCode.UpArrow))
             currentAction -= 2;
 
-        currentAction = Mathf.Clamp(currentAction, 0, 3);
+        currentAction = Mathf.Clamp(currentAction, 0, 2);
 
         dialogBox.UpdateActionSelection(currentAction);
 
@@ -224,14 +224,10 @@ public class BattleSystem : MonoBehaviour
             }
             else if (currentAction == 1)
             {
-                //Bag
-            }
-            else if (currentAction == 2)
-            {
                 //Pokemon
                 OpenPartyScreen();
             }
-            else if (currentAction == 3)
+            else if (currentAction == 2)
             {
                 //Run
                 StartCoroutine(TryToEscape());
