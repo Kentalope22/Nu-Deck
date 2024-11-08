@@ -79,6 +79,10 @@ public class BattleSystem : MonoBehaviour
         var move = playerUnit.Pokemon.Moves[currentMove];
         yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.baseStats.Name} used {move.baseStats.Name}!");
 
+        playerUnit.PlayAttackAnimation();
+        yield return new WaitForSeconds(1f);
+
+        enemyUnit.PlayHitAnimation();
 
         var damageDetails = enemyUnit.Pokemon.TakeDamage(move, playerUnit.Pokemon);
         yield return enemyHud.UpdateHP();
@@ -103,6 +107,11 @@ public class BattleSystem : MonoBehaviour
 
         var move = enemyUnit.Pokemon.GetRandomMove();
         yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.baseStats.Name} used {move.baseStats.Name}!");
+
+        enemyUnit.PlayAttackAnimation();
+        yield return new WaitForSeconds(1f);
+
+        playerUnit.PlayHitAnimation();
 
         var damageDetails = playerUnit.Pokemon.TakeDamage(move, playerUnit.Pokemon);
         yield return playerHud.UpdateHP();
@@ -179,7 +188,7 @@ public class BattleSystem : MonoBehaviour
 
         if (damageDetails.TypeEffectiveness > 1f)
             yield return dialogBox.TypeDialog("It's super effective!");
-        else if (damageDetails.TypeEffectiveness < 1f)
+        else if (damageDetails.TypeEffectiveness < 0.01f)
             yield return dialogBox.TypeDialog("It's not very effective!");
     }
 
