@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Whirlpool
   description: 
-  type: 0
+  type: 3
   power: 45
   accuracy: 100
   pp: 20

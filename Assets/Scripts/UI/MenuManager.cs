@@ -70,14 +70,6 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_menuFirst);
     }
 
-    public void OpenPartyMenu()
-    {
-        _menuCanvasGO.SetActive(false);
-        _partyCanvasGO.SetActive(true);
-
-        EventSystem.current.SetSelectedGameObject(_partyFirst);
-
-    }
 
     private void CloseAllMenus()
     {
@@ -92,16 +84,6 @@ public class MenuManager : MonoBehaviour
     public void OnResumePress()
     {
         Unpause();
-    }
-
-    public void OnPartyPress()
-    {
-        OpenPartyMenu();
-    }
-
-    public void OnPartyBackPress()
-    {
-        OpenMenu();
     }
 
     public void OnQuitPress()
