@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Bite
   description: 
-  type: 0
+  type: 1
   power: 35
   accuracy: 100
   pp: 10

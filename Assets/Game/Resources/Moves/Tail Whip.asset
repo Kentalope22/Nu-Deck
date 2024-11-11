@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tail Whip
   description: 
-  type: 0
+  type: 1
   power: 50
   accuracy: 100
   pp: 25

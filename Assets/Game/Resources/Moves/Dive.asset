@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dive
   description: 
-  type: 0
+  type: 3
   power: 20
   accuracy: 100
   pp: 15
