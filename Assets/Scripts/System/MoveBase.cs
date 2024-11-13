@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// Allows for creation in the Unity Hub
 [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new Move")]
 public class MoveBase : ScriptableObject
 {
+    // Move stats found in every one on these kind of moves
     [SerializeField] new string name;
 
     [TextArea]
@@ -15,6 +16,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] int accuracy;
     [SerializeField] int pp;
 
+    // Reference Functions to allows these variable to be used in other scripts
     public string Name
     {
         get { return name; }
