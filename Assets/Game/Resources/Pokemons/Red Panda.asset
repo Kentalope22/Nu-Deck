@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113ce903cc549954eb6dff17bff45220, type: 3}
+  m_Name: Red Panda
+  m_EditorClassIdentifier: 
+  name: Red Panda
+  description: 
+  frontSprite: {fileID: 21300000, guid: db241bd059e92e149858a748074af551, type: 3}
+  backSprite: {fileID: 21300000, guid: 85560f396f912af47839fb2f9a048884, type: 3}
+  type1: 2
+  type2: 0
+  maxHp: 45
+  attack: 69
+  defense: 40
+  spAttack: 80
+  spDefense: 50
+  speed: 65
+  expYield: 64
+  growthRate: 0
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 0886ba7edbc097a45b5e0337a3a2b2de, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: cfa5861a1dd0c9b4baab82615066e7be, type: 2}
+    level: 4
+  - moveBase: {fileID: 11400000, guid: 0bea654127cd88940aa63f2340d6eddb, type: 2}
+    level: 7
+  - moveBase: {fileID: 11400000, guid: a9c7acdc6d647f74f9e7bdafa16f4aef, type: 2}
+    level: 10
