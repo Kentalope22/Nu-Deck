@@ -7,7 +7,7 @@ public enum GameState { FreeRoam, Battle }
 
 public class GameController : MonoBehaviour
 {
-    //video #12
+    
     [SerializeField] PlayerMove playerMove;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
