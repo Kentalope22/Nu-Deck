@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// Allows for easier Pokemon creation
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
 public class PokemonBase : ScriptableObject
 {
+    // Variables present in those type of Pokemons
     [SerializeField] new string name;
     [TextArea]
     [SerializeField] string description;
@@ -27,8 +28,11 @@ public class PokemonBase : ScriptableObject
 
     [SerializeField] List<LearnableMove> learnableMoves;
 
+    // Calculates the given EXP needed for each level
+
     public int GetExpForLevel(int level)
     {
+        // Uses growth rate to determine whether its less or more exp
         if(growthRate == GrowthRate.Fast)
         {
             return 4 * level * level * level / 5;
@@ -37,9 +41,10 @@ public class PokemonBase : ScriptableObject
         {
             return level * level * level;
         }
+        // If growth rate isn't applicable then pokemon EXP is wrong
         return -1;
     }
-
+    // Reference Functions to access these variables in other scripts
     public string Name
     {
         get { return name; }
@@ -95,15 +100,16 @@ public class PokemonBase : ScriptableObject
     {
         get { return learnableMoves; }
     }
-
     public int ExpYield => expYield;
 
     public GrowthRate GrowthRate => growthRate;
 }
 
 [System.Serializable]
+// Class dealing with whether a move is learnable by the pokemon
 public class LearnableMove
 {
+    // Levels and moveBase for the Pokemons base
     [SerializeField] MoveBase moveBase;
     [SerializeField] int level;
 
@@ -118,6 +124,7 @@ public class LearnableMove
     }
 }
 
+// Uses enum to create a list with the Pokemon types
 public enum Pokemontype
 {
     None,
@@ -139,16 +146,19 @@ public enum Pokemontype
     Fairy
 }
 
+// List for type of pokemon growth rates
 public enum GrowthRate
 {
     Fast, MediumFast
 }
 
-
+// Class the calculates the damage effectiveness of the types to one another
 public class TypeChart
 {
+    // 2D array for all the type effectiveness to each type
     static float[][] chart =
     {
+        // The NUMBESR MEAN THE MULTIPLIER FOR THE EACH TYPE
         //                       Nor   Fir   Wat   Ele   Gra   Ice   Fig   Poi   Gro   Fly   Psy   Bug   Roc   Gho   Dra         Fai
         /*Normal*/  new float[] {1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   1f,   0.5f, 0,    1f,      1f},
         /*Fire*/    new float[] {1f,   0.5f, 0.5f, 1f,   2f,   2f,   1f,   1f,   1f,   1f,   1f,   2f,   0.5f, 1f,   0.5f,       1f},
@@ -168,14 +178,17 @@ public class TypeChart
         /*Fairy*/   new float[] {1f,   0.5f, 1f,   1f,   1f,   1f,   2f,   0.5f, 1f,   1f,   1f,   1f,   1f,   1f,   2f,      1f},
     };
 
+    // Gets effectiveness of move based off the Pokemons base stats
     public static float GetEffectiveness(Pokemontype attackType, Pokemontype defenseType)
     {
+        // If it ever comes the case that a pokemon has no type it will have no effect
         if (attackType == Pokemontype.None || defenseType == Pokemontype.None)
             return 1;
         
+        // Finds the respective type in the 2 ad array of type effectiveness
         int row = (int)attackType - 1;
         int col = (int)defenseType - 1;
-
+        // Finds the multiplier of those two types
         return chart[row][col];
     }
 }
